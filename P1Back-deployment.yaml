@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: P1-back
+    app: parcial1-paa
   name: P1-back
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: back
+      app: parcial1-paa
   template:
     metadata:
       labels:
-        app: back
+        app: parcial1-paa
     spec:
       containers:
       - image: luisgalvisp/p1_back

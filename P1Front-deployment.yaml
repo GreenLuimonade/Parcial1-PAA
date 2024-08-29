@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: front
+    app: parcial1-paa
   name: frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: front
+      app: parcial1-paa
   template:
     metadata:
       labels:
-        app: front
+        app: parcial1-paa
     spec:
       containers:
       - image: luisgalvisp/p1_front
-        name: front
+        name: parcial1-paa
         ports:
         - containerPort: 80
         resources:
