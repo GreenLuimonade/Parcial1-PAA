@@ -4,6 +4,8 @@ metadata:
   labels:
     app: parcial1-paa
   name: frontend
+  namespace: deployments
+
 spec:
   replicas: 1
   selector:
