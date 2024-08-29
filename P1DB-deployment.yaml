@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: DB-deployment
+  name: db-deployment
 spec:
   replicas: 1
   selector:
@@ -19,11 +19,11 @@ spec:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: root_password
+              value: "root_password"
             - name: MYSQL_DATABASE
-              value: paa-p1
+              value: "paa-p1"
             - name: MYSQL_USER
-              value: root
+              value: "root"
             - name: MYSQL_PASSWORD
-              value: 12345
+              value: "12345"
 

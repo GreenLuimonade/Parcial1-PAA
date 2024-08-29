@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: parcial1-paa
-  name: P1-back
+  name: p1-back
 spec:
   replicas: 1
   selector:
@@ -19,17 +19,17 @@ spec:
         name: backend
         ports:
         - containerPort: 8080
-        env: # Conexión a myslq
+        env: # Conexión a mysql
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:mysql://database-service:3306/paa-p1
+          value: "jdbc:mysql://database-service:3306/paa-p1"
         - name: SPRING_DATASOURCE_USERNAME
-          value: root
+          value: "root"
         - name: SPRING_DATASOURCE_PASSWORD
-          value: 12345
+          value: "12345" 
         - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-          value: update
+          value: "update"
         - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
-          value: com.mysql.cj.jdbc.Driver
+          value: "com.mysql.cj.jdbc.Driver"
         resources:
           requests:
             memory: "500Mi"
