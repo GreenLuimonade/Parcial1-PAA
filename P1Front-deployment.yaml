@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: front
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: front
+    spec:
+      containers:
+      - image: luisgalvisp/p1_front
+        name: front
+        ports:
+          - containerPort: 80
+        resources: -
+       requests:
+        memory: "500Mi"
+        cpu: "150m"
+      limits:
+        memory: "1Gi"
+        cpu: "600m"
+        startupProbe: #verificamos que subio
+          httpGet:
+           path: /saludo
+            port: 8080
+            initialDelaySeconds: 30
+            failureThreshold: 3
+              periodSeconds: 5
+        livenessProbe: #verificamos que sigue vivo
+          httpGet:
+            path: /saludo
+            periodSeconds: 5
+          failureThreshold: 3
+            periodSeconds: 5
