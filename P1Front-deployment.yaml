@@ -30,14 +30,12 @@ spec:
             cpu: "600m"
         startupProbe: # Verificamos que subió
           httpGet:
-            path: /saludo
             port: 8080
           initialDelaySeconds: 30
           failureThreshold: 3
           periodSeconds: 5
         livenessProbe: # Verificamos que sigue vivo
           httpGet:
-            path: /saludo
             port: 8080
           initialDelaySeconds: 30
           periodSeconds: 5
