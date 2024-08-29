@@ -19,7 +19,7 @@ spec:
         name: backend
         ports:
         - containerPort: 8080
-        env: # Conexión a MySQL
+        env: # Conexión a myslq
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://database-service:3306/paa-p1
         - name: SPRING_DATASOURCE_USERNAME
