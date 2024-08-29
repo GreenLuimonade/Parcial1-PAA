@@ -4,7 +4,7 @@ metadata:
   name: back-service
 spec:
   selector:
-    app: back
+    app: parcial1-paa
   ports:
     - protocol: TCP
       port: 8080
