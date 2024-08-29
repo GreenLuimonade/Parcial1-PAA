@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: P1-back
   name: P1-back
@@ -10,10 +9,8 @@ spec:
   selector:
     matchLabels:
       app: back
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: back
     spec:
@@ -21,35 +18,36 @@ spec:
       - image: luisgalvisp/p1_back
         name: backend
         ports:
-          - containerPort: 8080
-        resources: -
-        env: #conexion a mysql
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://database-service:3306/paa-p1
-            - name: SPRING_DATASOURCE_USERNAME
-              value: root
-            - name: SPRING_DATASOURCE_PASSWORD
-              value: 12345
-            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-              value: update
-            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
-              value: com.mysql.cj.jdbc.Driver
-       requests:
-        memory: "500Mi"
-        cpu: "150m"
-      limits:
-        memory: "1Gi"
-        cpu: "600m"
-        startupProbe: #verificamos que subio
-          httpGet:
-           path: /saludo
-            port: 8080
-            initialDelaySeconds: 30
-            failureThreshold: 3
-              periodSeconds: 5
-        livenessProbe: #verificamos que sigue vivo
+        - containerPort: 8080
+        env: # Conexión a MySQL
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:mysql://database-service:3306/paa-p1
+        - name: SPRING_DATASOURCE_USERNAME
+          value: root
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: 12345
+        - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+          value: update
+        - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+          value: com.mysql.cj.jdbc.Driver
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "150m"
+          limits:
+            memory: "1Gi"
+            cpu: "600m"
+        startupProbe: # Verificación inicial de subida
           httpGet:
             path: /saludo
-            periodSeconds: 5
+            port: 8080
+          initialDelaySeconds: 30
           failureThreshold: 3
-            periodSeconds: 5
+          periodSeconds: 5
+        livenessProbe: # Verificación de que sigue vivo
+          httpGet:
+            path: /saludo
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          failureThreshold: 2

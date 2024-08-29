@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: Parcial1-PAA
+  name: parcial1-paa
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/GreenLuimonade/Parcial1-PAA
+    repoURL: https://github.com/GreenLuimonade/Parcial1-PAA.git
     path: "."
     targetRevision: HEAD
   syncPolicy:
